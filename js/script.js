@@ -5,15 +5,42 @@ var colorDisplay = document.getElementById("display");
 var messageDisplay = document.querySelector('#message');
 var h1 = document.querySelector('h1');
 var resetButton = document.querySelector("#reset");
+var easyBtn = document.querySelector("#easyBtn")
+var hardBtn = document.querySelector("#hardBtn")
 
+function randomise (){
+    for (var i = 0; i < squares.length; i++){
+        squares[i].style.backgroundColor = colors[i]
+    }
+}
+
+easyBtn.addEventListener('click', function () {
+    easyBtn.classList.add('selected');
+    hardBtn.classList.remove('selected');
+    colors = guessColors(3);
+    pickedColor = pickColor();
+    colorDisplay.textContent = pickedColor;
+    randomise();
+    for(var i = 3; i < squares.length; i++){
+        squares[i] = squares[i].style.backgroundColor = '#232323'
+    }
+
+
+});
+
+hardBtn.addEventListener('click', function () {
+    hardBtn.classList.add('selected');
+    easyBtn.classList.remove('selected');
+    colors = guessColors(6);
+    pickedColor = pickColor();
+    colorDisplay.textContent = pickedColor
+    randomise()
+});
 
 resetButton.addEventListener("click", function() {
     colors = guessColors(6);
-
     pickedColor = pickColor();
-
     colorDisplay.textContent = pickedColor;
-    
     for (var i = 0; i < squares.length; i++){
         squares[i].style.backgroundColor = colors[i]
     }
