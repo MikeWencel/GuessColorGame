@@ -1,3 +1,4 @@
+var numSquares = 6;
 var colors = guessColors(6);
 var squares = document.querySelectorAll('.square');
 var pickedColor = pickColor();
@@ -8,11 +9,6 @@ var resetButton = document.querySelector("#reset");
 var easyBtn = document.querySelector("#easyBtn")
 var hardBtn = document.querySelector("#hardBtn")
 
-function randomise (){
-    for (var i = 0; i < squares.length; i++){
-        squares[i].style.backgroundColor = colors[i]
-    }
-}
 
 easyBtn.addEventListener('click', function () {
     easyBtn.classList.add('selected');
@@ -20,12 +16,13 @@ easyBtn.addEventListener('click', function () {
     colors = guessColors(3);
     pickedColor = pickColor();
     colorDisplay.textContent = pickedColor;
-    randomise();
-    for(var i = 3; i < squares.length; i++){
-        squares[i] = squares[i].style.backgroundColor = '#232323'
+    for (var i = 0; i < squares.length; i++){
+        if (colors[i]){
+            squares[i].style.background = colors[i]
+        } else {
+            squares[i].style.display = 'none'
+        }
     }
-
-
 });
 
 hardBtn.addEventListener('click', function () {
@@ -34,41 +31,41 @@ hardBtn.addEventListener('click', function () {
     colors = guessColors(6);
     pickedColor = pickColor();
     colorDisplay.textContent = pickedColor
-    randomise()
+    for (var i = 0; i < squares.length; i++){
+            squares[i].style.background = colors[i]
+            squares[i].style.display = 'block';
+    }
 });
 
 resetButton.addEventListener("click", function() {
-    colors = guessColors(6);
+    colors = guessColors(numSquares);
     pickedColor = pickColor();
     colorDisplay.textContent = pickedColor;
     for (var i = 0; i < squares.length; i++){
         squares[i].style.backgroundColor = colors[i]
+        squares[i].style.display = 'block';
     }
 
-    h1.style.backgroundColor = '#232323';
+    h1.style.backgroundColor = 'steelblue';
 });
 
 
 colorDisplay.textContent = pickedColor;
 
 for (var i = 0; i < squares.length ; i++) {
-    //Dodaje kolory dla kwadratów
     squares[i].style.backgroundColor = colors[i]
-
-    //Działanie pointera - klikanie
     squares[i].addEventListener('click', function () {
-    //Pobieranie klikniętego koloru
     var clickedColor = this.style.backgroundColor;
     if (clickedColor === pickedColor){
         messageDisplay.textContent = 'Prawidłowo!';
-        changeColors(clickedColor);
-        h1.style.backgroundColor = clickedColor;
         resetButton.textContent = "zagraj jeszcze raz"
+        changeColors(clickedColor);
+        h1.style.background = clickedColor;
+
     }else {
-        this.style.backgroundColor ='#232323';
+        this.style.background ='#232323';
         messageDisplay.textContent = 'Próbuj dalej'
     }
-
     })
 }
 
