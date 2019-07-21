@@ -1,7 +1,7 @@
 const numSquares = 6;
-const colors = guessColors(6);
+let colors = guessColors(6);
 const squares = document.querySelectorAll('.square');
-const pickedColor = pickColor();
+let pickedColor = pickColor();
 const colorDisplay = document.getElementById("display");
 const messageDisplay = document.querySelector('#message');
 const h1 = document.querySelector('h1');
@@ -69,18 +69,18 @@ for (let i = 0; i < squares.length ; i++) {
     })
 }
 
-function changeColors(color) {
+const changeColors = (color) => {
     for (let i = 0; i < squares.length; i++) {
       squares[i].style.backgroundColor = color;
     }
-}
+};
 
-function pickColor() {
-var random = Math.floor(Math.random() * colors.length)
+const pickColor = () => {
+let random = Math.floor(Math.random() * colors.length)
     return colors[random]
-}
+};
 
-function guessColors(num) {
+const guessColors = (num) => {
     //Tworzymy array
     const arr = []
     //
@@ -89,12 +89,12 @@ function guessColors(num) {
     }
     // Zwracamy wylosowany arr
     return arr;
-}
+};
 
 
-function randomColor() {
+const randomColor = () => {
    const a = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
     const c = Math.floor(Math.random() * 256);
     return 'rgb(' + a +', ' + b +', ' + c+')';
-}
+};
