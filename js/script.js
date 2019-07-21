@@ -1,13 +1,13 @@
-var numSquares = 6;
-var colors = guessColors(6);
-var squares = document.querySelectorAll('.square');
-var pickedColor = pickColor();
-var colorDisplay = document.getElementById("display");
-var messageDisplay = document.querySelector('#message');
-var h1 = document.querySelector('h1');
-var resetButton = document.querySelector("#reset");
-var easyBtn = document.querySelector("#easyBtn")
-var hardBtn = document.querySelector("#hardBtn")
+const numSquares = 6;
+const colors = guessColors(6);
+const squares = document.querySelectorAll('.square');
+const pickedColor = pickColor();
+const colorDisplay = document.getElementById("display");
+const messageDisplay = document.querySelector('#message');
+const h1 = document.querySelector('h1');
+const resetButton = document.querySelector("#reset");
+const easyBtn = document.querySelector("#easyBtn")
+const hardBtn = document.querySelector("#hardBtn")
 
 
 easyBtn.addEventListener('click', function () {
@@ -16,7 +16,7 @@ easyBtn.addEventListener('click', function () {
     colors = guessColors(3);
     pickedColor = pickColor();
     colorDisplay.textContent = pickedColor;
-    for (var i = 0; i < squares.length; i++){
+    for (let i = 0; i < squares.length; i++){
         if (colors[i]){
             squares[i].style.background = colors[i]
         } else {
@@ -31,7 +31,7 @@ hardBtn.addEventListener('click', function () {
     colors = guessColors(6);
     pickedColor = pickColor();
     colorDisplay.textContent = pickedColor
-    for (var i = 0; i < squares.length; i++){
+    for (let i = 0; i < squares.length; i++){
             squares[i].style.background = colors[i]
             squares[i].style.display = 'block';
     }
@@ -41,7 +41,7 @@ resetButton.addEventListener("click", function() {
     colors = guessColors(numSquares);
     pickedColor = pickColor();
     colorDisplay.textContent = pickedColor;
-    for (var i = 0; i < squares.length; i++){
+    for (let i = 0; i < squares.length; i++){
         squares[i].style.backgroundColor = colors[i]
         squares[i].style.display = 'block';
     }
@@ -52,10 +52,10 @@ resetButton.addEventListener("click", function() {
 
 colorDisplay.textContent = pickedColor;
 
-for (var i = 0; i < squares.length ; i++) {
+for (let i = 0; i < squares.length ; i++) {
     squares[i].style.backgroundColor = colors[i]
     squares[i].addEventListener('click', function () {
-    var clickedColor = this.style.backgroundColor;
+    let clickedColor = this.style.backgroundColor;
     if (clickedColor === pickedColor){
         messageDisplay.textContent = 'Prawidłowo!';
         resetButton.textContent = "zagraj jeszcze raz"
@@ -70,7 +70,7 @@ for (var i = 0; i < squares.length ; i++) {
 }
 
 function changeColors(color) {
-    for (var i = 0; i < squares.length; i++) {
+    for (let i = 0; i < squares.length; i++) {
       squares[i].style.backgroundColor = color;
     }
 }
@@ -82,9 +82,9 @@ var random = Math.floor(Math.random() * colors.length)
 
 function guessColors(num) {
     //Tworzymy array
-    var arr = []
+    const arr = []
     //
-    for (var i = 0; i < num;i++){
+    for (let i = 0; i < num;i++){
     arr.push(randomColor())
     }
     // Zwracamy wylosowany arr
@@ -93,8 +93,8 @@ function guessColors(num) {
 
 
 function randomColor() {
-   var a = Math.floor(Math.random() * 256);
-    var b = Math.floor(Math.random() * 256);
-    var c = Math.floor(Math.random() * 256);
+   const a = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    const c = Math.floor(Math.random() * 256);
     return 'rgb(' + a +', ' + b +', ' + c+')';
 }
